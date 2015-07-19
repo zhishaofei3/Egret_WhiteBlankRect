@@ -1,20 +1,12 @@
 class Main extends egret.DisplayObjectContainer {
 	public constructor() {
 		super();
-
-		var group:GroupRect = new GroupRect();
-		this.addChild(group);
-		group.createBlackRect();
-		group.addEventListener("gameOver", this.gameOver, this);
-		group.addEventListener("clickRight", this.clickRight, this);
+		this.addEventListener(egret.Event.ADDED_TO_STAGE, this.addStage, this);
 	}
 
-	private gameOver() {
-		console.log("gameOver");
-	}
-
-	private clickRight() {
-		console.log("clickRight");
+	private addStage() {
+		this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.addStage, this);
+		var game:Game = new Game(this);
 	}
 }
 

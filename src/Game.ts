@@ -37,8 +37,15 @@ class Game {
 		Data.score++;
 	}
 
-	private gameOver() {
+	private gameOverPanel:GameOverPanel;
 
+	private gameOver() {
+		this._timerPanel.stop();
+		if (!this.gameOverPanel) {
+			this.gameOverPanel = new GameOverPanel();
+			this.gameOverPanel.addEventListener("startGame", this.startGame, this);
+		}
+		this._root.addChild(this.gameOverPanel);
 	}
 
 	private _timerPanel:TimerPanel;
@@ -50,6 +57,15 @@ class Game {
 	}
 
 	private startGame() {
-
+		Data.score = 0;
+		for (var i = 0; i < this._row; i++) {
+			this._rectGroups[i].init();
+			this._rectGroups[i].y = Data.getRectWidth() * i;
+			this._rectGroups[i]._currentRow = i;
+			if (i != (this._row - 1)) {
+				this._rectGroups[i].createBlackRect();
+			}
+		}
+		this._timerPanel.start();
 	}
 }

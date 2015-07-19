@@ -22,11 +22,9 @@ class Rect extends egret.Sprite {
 	}
 
 	public set type(value:string) {
-		if (value != this._type) {
-			this._currentColor = value == RectType.CLICKABLE ? 0 : 1;
-			this.draw();
-			this._type = value;
-		}
+		this._currentColor = value == RectType.CLICKABLE ? 0 : 1;
+		this._type = value;
+		this.draw();
 	}
 
 	public onRectClick() {

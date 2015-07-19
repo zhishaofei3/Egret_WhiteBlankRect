@@ -17,7 +17,7 @@ class GroupRect extends egret.Sprite {
 		}
 	}
 
-	private _currentRow:number = 0;
+	public _currentRow:number = 0;
 
 	private onClickRect(e:egret.TouchEvent) {
 		e.target.onRectClick();
